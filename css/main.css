@@ -1,0 +1,288 @@
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+.container-fluid,.row,.col-fath,.columm{
+    height:100%;
+ 
+}
+
+.columm{
+    border: 2px solid black;
+}
+
+#search{
+    height: 5%;
+    width: 100%;
+    background-color: #ddd;
+}
+#search input{
+    height: 100%;
+    width: 80%;
+}
+#search button{
+    height: 100%;
+    width: 20%;
+    float: right;
+}
+
+#key_title{
+    height: 5%;
+    width: 100%;
+    background-color: #aaa;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.list_title{
+    height: 5%;
+    width: 100%;
+    background-color: #aaa;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+
+
+.sortOrder{
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 14px;
+
+}
+
+.sortOrder ul {
+    height: 100%;
+}
+
+.sortOrder ul li{
+    height: 100%;
+}
+.sortOrder ul li a{
+    height: 100%;
+}
+
+div.scroll {   
+    height: 40%;   
+    width: 100%;   
+    overflow: auto;   
+    border: 1px solid #666;   
+    background-color: #ccc;   
+    padding: 8px;   
+} 
+
+.scroll ul li,#article_list ul li{
+    list-style: none;
+}
+.main_top{
+    border-bottom: 2px solid black;
+}
+.top_left{
+    border-right: 2px solid black;
+}
+
+.map_title{
+    height: 10%;
+    width: 100%;
+    background-color: #aaa;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position:relative;
+}
+
+#mapImg{
+    height:100%;
+    width:10%;
+    position:absolute;
+    top:0;
+    right:10px;
+}
+
+.titleImg{
+    height:100%;
+    width:50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float:left;
+}
+
+.titleImg:hover{
+    cursor:pointer;
+    background-color:#999;
+}
+
+.titleImg img{
+    height:80%;
+    width:auto;
+}
+
+.mainView{
+    position:relative;
+    width: 100%;
+    height:90%;
+}
+.mainVisView{
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+}
+
+.article_list_title{
+    height: 10%;
+    width: 100%;
+    background-color: #aaa;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#article_list{
+    height: 90%;   
+    width: 100%;   
+    overflow: auto;   
+    border: 1px solid #666;   
+    background-color: #ccc;   
+    padding: 8px;   
+}
+#article_list ul li:hover,#author_list ul li:hover,#affiliation_list ul li:hover{
+    cursor: pointer;
+    background-color: #777;
+    color: #fff;
+}
+.author_title{
+    height: 11.1%;
+    width: 100%;
+    background-color: #aaa;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.author_title img{
+    position: absolute;
+    height: 80%;
+    width: auto;
+    top:10%;
+    right: 5%;
+}
+.author_title img:hover{
+    cursor: pointer;
+}
+
+.author_information{
+    height: 88.9%;
+    width: 100%;
+    background-color:#ddd;
+    color: #555;
+}
+#authorName,#authorAffiliation{
+    text-align: center;
+}
+#authorName{
+    overflow:hidden; 
+    text-overflow:ellipsis;
+    display:-webkit-box; 
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2; 
+}
+.author_image{
+    width:100%;
+    height:50%;
+}
+.author_image img{
+    display:block;
+    height:100%;
+    width:auto;
+    margin:auto;
+}
+.author_navigation{
+    width:100%;
+    height:11.1%;
+    background-color: #ccc;
+}
+.display_view{
+    position:relative;
+    width:100%;
+    height:88.9%;
+    background-color:#eee;
+}
+.vis_view{
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+}
+#themeRiver,#egoEvolution{
+    height:100%;
+    width:70%;
+    float:left;
+}
+#wordCloud,#egoNetwork{
+    height:100%;
+    width:30%;
+    float:left;
+}
+
+#parallel{
+    height: 100%;
+    width: 60%;
+    float: left;
+}
+
+.similarContainer{
+    height: 100%;
+    width:40%;
+    float: left;
+}
+.similarRow{
+    width: 100%;
+    height:50%;
+}
+.similarItem{
+    height: 100%;
+    width: 33.33%;
+    float: left;
+
+}
+.similarItem:hover{
+    background-color:#ccc;
+    cursor: pointer;
+}
+.similarItem img{
+    display: block;
+    height: 40%;
+    width: auto;
+    margin:15% auto 15% auto;
+
+}
+.similarItem p{
+    text-align: center;
+}
