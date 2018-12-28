@@ -3,7 +3,7 @@
 
 	$fName = $_POST['fName'];
     $sName = $_POST['sName'];
-	$year=$_POST['year'];
+	$year = $_POST['year'];
 
 	if($year != 0){
 		$y = " and year=$year";
