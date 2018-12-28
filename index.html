@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>PaperVis</title>
+    <!-- 引入 echarts.js -->
+    <script src="js/echarts.js"></script>
+    <script src="js/echarts-wordcloud.min.js"></script>
+    <script src="js/world.js"></script>
+    <script src="js/jquery-3.3.1.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+    <script src="js/bootstrap.js"></script>
+    <link href="css/main.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+    <div class="container-fluid" style="margin-top:5px;">
+        <div class="row">
+            <div class="col-md-3 col-fath" style="padding:0">
+                <div class="columm" style=" width: 100%; border-right:none">
+                    <div id="key_title">
+                        key
+                    </div>
+                    <div id="search">
+                        <input id="key_search" type="text" placeholder="please input a key">
+                        <button type="button" onclick="search_click()">click</button>
+                    </div>
+                    <div class="list_title">
+                        affiliation
+                        <div class="sortOrder" id="affiliationSort">
+                            <ul class="nav nav-tabs">
+                                <li role="presentation" class="active"><a href="###">papers</a></li>
+                                <li role="presentation"><a href="###">citation</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="scroll" id="affiliation_list">
+                        loadding...
+                    </div>
+
+                    <div class="list_title">
+                        author
+                        <div class="sortOrder" id="authorSort">
+                            <ul class="nav nav-tabs">
+                                <li role="presentation" class="active"><a href="###">papers</a></li>
+                                <li role="presentation"><a href="###">citation</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="scroll" id="author_list">
+                        loadding...
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-9 col-fath" style="padding:0">
+                <div class="columm" style=" width:100% ; ">
+                    <div class="main_top" style="width:100%;height:55%">
+                        <div class="top_left" style="width:65%;height:100%;float:left">
+                            <div class="map_title">
+                                <span>affiliation distribution</span>
+                                <div id="mapImg">
+                                    <div class="titleImg" id="earthIcon"><img src="img/earth_active.png" title="earth"></div>
+                                    <div class="titleImg" id="graphIcon"><img src="img/graph.png" title="graph"></div>
+                                </div>
+
+                            </div>
+                            <div class="mainView">
+                                <div class="mainVisView" id="worldmap"></div>
+                                <div class="mainVisView" id="community_layout" style="visibility:hidden"></div>
+                            </div>
+
+                        </div>
+                        <div class="top_right" style="width:35%;height:100%;float:left">
+                            <div class="article_list_title">article</div>
+                            <div class="article_scroll" id="article_list">
+                                loadding...
+                            </div>
+                        </div>
+                    </div>
+                    <div class="main_bottom" style="width:100%;height:45%;">
+                        <div class="author_left" style="width:25%;height:100%;float:left">
+                            <div class="author_title">
+                                information
+                                <img src="img/back.png" id="lastAuthor" alt="last author"></button>
+                            </div>
+                            <div class="author_information">
+                                <div class="author_image">
+                                    <img src="img/book3.png" id="informationImg">
+                                </div>
+                                <h1 id="authorName">field overview</h1>
+                                <p id="authorAffiliation"> </p>
+
+                            </div>
+                        </div>
+                        <div class="author_right" style="width:75%;height:100%;float:left">
+                            <div class="author_navigation">
+                                <ul class="nav nav-tabs">
+                                    <li role="presentation" id="navi1" class="active"><a href="###">research filed</a></li>
+                                    <li role="presentation" id="navi2"><a href="###">ego-network</a></li>
+                                    <li role="presentation" id="navi3"><a href="###">similar author</a></li>
+                                </ul>
+                            </div>
+                            <div class="display_view">
+                                <div class="vis_view" id="key_view">
+                                    <div id="themeRiver"></div>
+                                    <div id="wordCloud"></div>
+                                </div>
+                                <div class="vis_view" id="coauthor_view" style="visibility:hidden">
+                                    <div id="egoEvolution">1</div>
+                                    <div id="egoNetwork">2</div>
+                                </div>
+                                <div class="vis_view" id="similar_view" style="visibility:hidden">
+                                    <div id="parallel"></div>
+                                    <div class="similarContainer">
+                                        <div class="similarRow">
+                                            <div class="similarItem">
+                                                <img src="img/sim_user.png">
+                                                <p>name</p>
+                                            </div>
+                                            <div class="similarItem">
+                                                <img src="img/sim_user.png">
+                                                <p>name</p>
+                                            </div>
+                                            <div class="similarItem">
+                                                <img src="img/sim_user.png">
+                                                <p>name</p>
+                                            </div>
+                                        </div>
+                                        <div class="similarRow">
+                                            <div class="similarItem">
+                                                <img src="img/sim_user.png">
+                                                <p>name</p>
+                                            </div>
+                                            <div class="similarItem">
+                                                <img src="img/sim_user.png">
+                                                <p>name</p>
+                                            </div>
+                                            <div class="similarItem">
+                                                <img src="img/sim_user.png">
+                                                <p>name</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+</body>
+<script type="text/javascript" src="js/location.js"></script>
+<script type="text/javascript" src="js/themeriver.js"></script>
+<script type="text/javascript" src="js/co-author.js"></script>
+<script type="text/javascript" src="js/community.js"></script>
+<script type="text/javascript" src="js/wordCloud.js"></script>
+<script type="text/javascript" src="js/similar_author.js"></script>
+<script>
+    var visible_index = 0;
+    var mainVisibleIndex = 0;
+    var paramList = {
+        'affiliation': [['papers', 'citation'], 0],
+        'author': ['all', 'all', ['papers', 'citation'], 0],
+        'article': ['all', 'all', 'all', 'all', ['year', 'citation'], 0]
+    };
+    var authorStack = [];
+    var informationFlag = ['author', 'Eduard Gröller'];
+    var keyFlag="all";
+
+
+    window.onload = function () {
+        locationInit('all');
+        affiliation_list(paramList.affiliation[0][0]);
+        author_list('all', 'all', paramList.author[2][0]);
+        article_list('all', 'all', 'all');
+        author_navigation_click();
+        overInformationInit();
+        mainViewItemClick();
+        forceLayoutInit();
+        sortClick();
+        backHover();
+    }
+
+
+
+    function overInformationInit() {
+
+        informationFlag[0] = 'all';
+        informationFlag[1] = 'all';
+        $('#informationImg').attr("src", 'img/book3.png');
+
+        $("#navi1").trigger("click");
+        $('#navi2').css("visibility", "hidden");
+        $('#navi3').css("visibility", "hidden");
+        $('#authorName').html('field overview');
+        $('#authorAffiliation').html('');
+        themeRiverInit('all');
+        wordCloudInit('all');
+    }
+
+    function search_click() {
+        var key = $('#key_search').val();
+        if (key == "") {
+            $('#key_search').attr('placeholder', 'please input a key');
+            paramList.author[0] = 'all';
+            paramList.author[1] = 'all';
+            keyFlag='all';
+            affiliation_list(paramList.affiliation[0][0],'all');
+            author_list(key, paramList.author[1], paramList.author[2][paramList.author[3]]);
+            article_list('all', 'all', 'all');
+            overInformationInit();
+            locationInit('all');
+        }
+        else {
+            $('#key_search').val('');
+            $('#key_search').attr('placeholder', key);
+            paramList.author[0] = key;
+            paramList.author[1] = 'all';
+            keyFlag=key;
+            author_list(key, paramList.author[1], paramList.author[2][paramList.author[3]]);
+            article_list(key, 'all', 'all');
+            affiliation_list(paramList.affiliation[0][0],key);
+            locationInit(key);
+        }
+    }
+
+    function author_item_click() {
+        $('#author_list ul li').click(function () {
+            var author_name = $(this).find('p').html();
+            article_list('all', author_name, 'all');
+            authorInformationInit(author_name);
+
+        });
+    }
+
+    function authorInformationInit(name) {
+        if (name != authorStack[authorStack.length - 1]) {
+            authorStack.push(name);
+            if (informationFlag[0] != 'author') {
+                informationFlag[0] = 'author';
+                $('#informationImg').attr("src", 'img/author_pic1.png');
+                $('#navi2').css("visibility", "visible");
+                $('#navi3').css("visibility", "visible");
+            }
+            informationFlag[1] = name;
+            author_information(name);
+            themeRiverInit(name);
+            coauthorViewInit(name);
+            wordCloudInit(name);
+            similarViewInit(name);
+            // console.log(authorStack);
+        }
+    }
+
+    function affiliationInformationInit(name) {
+        if (informationFlag[0] != 'affiliation') {
+            informationFlag[0] = 'affiliation';
+            $('#informationImg').attr("src", 'img/affiliation.png');
+            $("#navi1").trigger("click");
+            $('#navi2').css("visibility", "hidden");
+            $('#navi3').css("visibility", "hidden");
+        }
+        informationFlag[1] = name;
+        affiliation_information(name);
+        themeRiverInit(name);
+        wordCloudInit(name);
+    }
+
+    function affiliation_item_click() {
+        $('#affiliation_list ul li').click(function () {
+            var affiliation = $(this).find('p').html();
+            console.log(affiliation);
+            paramList.author[1] = affiliation;
+            author_list(paramList.author[0], paramList.author[1], paramList.author[2][paramList.author[3]]);
+            article_list('all', 'all', affiliation);
+            // author_information(author_name);
+        });
+    }
+
+    function affiliation_list() {
+        var sort=arguments[0] ; 
+        var key = arguments[1] ?  arguments[1] : 'all'; 
+        console.log(sort,key);
+        $.ajax({
+            type: "POST",  //提交方式
+            data: {
+                'sort': sort,
+                'key': key
+
+            },
+            url: "php/affiliation_list.php",//路径,www根目录下
+
+            success: function (result) {//返回数据根据结果进行相应的处理
+
+                if (result == 'null')
+                    $('#key_search').attr('placeholder', 'no matching item');
+                else {
+                    var data = eval(result);
+                    $('#affiliation_list').html('');
+                    $('#affiliation_list').append('<ul class="list-group"></ul>');
+                    for (var i in data) {
+                        $('#affiliation_list ul').append('<li class="list-group-item"><p>' + data[i].affiliation + '<p><span class="aff_paper_num">papers:' + data[i].num + '</span><span class="aff_citation_num">&nbsp&nbsp&nbsp&nbspcitation:' + data[i].citation + '</span></li>');
+                    }
+                    if (sort == 'papers') {
+                        $('.aff_paper_num').css("font-weight", "bold");
+                    }
+                    else {
+                        $('.aff_citation_num').css("font-weight", "bold");
+                    }
+                    affiliation_item_click();
+                }
+            }
+        });
+    }
+
+
+    function author_list(key, affiliation, sort) {
+        $.ajax({
+            type: "POST",  //提交方式
+            url: "php/author_list.php",//路径,www根目录下
+            data: {
+                "key": key,
+                "affiliation": affiliation,
+                "sort": sort
+            },//数据，这里使用的是Json格式进行传输
+            success: function (result) {//返回数据根据结果进行相应的处理
+                if (result == 'null')
+                    $('#key_search').attr('placeholder', 'no matching item');
+                else {
+                    var data = eval(result);
+                    $('#author_list').html('');
+                    $('#author_list').append('<ul class="list-group"></ul>');
+                    for (var i in data) {
+                        $('#author_list ul').append('<li class="list-group-item"><p>' + data[i].author_name + '<p><span class="paper_num">papers:' + data[i].num + '</span><span class="citation_num">&nbsp&nbsp&nbsp&nbspcitation:' + data[i].citation + '</span></li>');
+                    }
+                    if (sort == 'papers') {
+                        $('.paper_num').css("font-weight", "bold");
+                    }
+                    else {
+                        $('.citation_num').css("font-weight", "bold");
+                    }
+                    author_item_click();
+                }
+            }
+        });
+    }
+
+    function article_list(key, author, affiliation) {
+        $.ajax({
+            type: "POST",  //提交方式
+            url: "php/article_list.php",//路径,www根目录下
+            data: {
+                "key": key,
+                "author": author,
+                "affiliation": affiliation,
+            },//数据，这里使用的是Json格式进行传输
+            success: function (result) {//返回数据根据结果进行相应的处理
+                if (result == 'null')
+                    $('#key_search').attr('placeholder', 'no matching item');
+                else {
+                    var data = eval(result);
+                    $('#article_list').html('');
+                    $('#article_list').append('<ul class="list-group"></ul>');
+                    for (var i in data) {
+                        $('#article_list ul').append('<li class="list-group-item"><p>' + data[i].paper_title + '</p>' + '<p>' + data[i].author_name + '</p>' + '<p><span>' + data[i].year + '&nbsp&nbsp&nbsp&nbsp</span><span><a href="' + data[i].link + '" target="view_window">link</a></span><span>&nbsp&nbsp&nbsp&nbspcitation:' + data[i].citation + '</span></p>' + '</li>');
+                    }
+                }
+            }
+        });
+    }
+
+    function author_information(name) {
+        $.ajax({
+            type: "POST",  //提交方式
+            url: "php/author_affiliation.php",//路径,www根目录下
+            data: {
+                "name": name
+            },//数据，这里使用的是Json格式进行传输
+            success: function (result) {//返回数据根据结果进行相应的处理
+                var data = eval(result);
+                $('#authorName').html(name);
+                $('#authorAffiliation').html(data[0].affiliation);
+            }
+        });
+    }
+
+    function affiliation_information(name) {
+        $.ajax({
+            type: "POST",  //提交方式
+            url: "php/affiliation_information.php",//路径,www根目录下
+            data: {
+                "name": name
+            },//数据，这里使用的是Json格式进行传输
+            success: function (result) {//返回数据根据结果进行相应的处理
+                var data = eval(result);
+                $('#authorName').html(name);
+                $('#authorAffiliation').html(data[0].adress);
+            }
+        });
+    }
+
+
+
+    function backHover() {
+        $('#lastAuthor').mouseover(function () {
+            $(this).attr("src", 'img/back_hover.png');
+        });
+        $('#lastAuthor').mouseout(function () {
+            $(this).attr("src", 'img/back.png');
+        });
+        $('#lastAuthor').click(function () {
+            if (authorStack.length > 1) {
+                authorStack.pop();
+                var name = authorStack.pop();
+                authorInformationInit(name);
+            }
+        });
+    }
+
+    function author_navigation_click() {
+        $('.author_navigation ul li').click(function () {
+            var click_index = $(this).index();
+            if (click_index != visible_index) {
+                $('.author_navigation ul').children('li').eq(visible_index).removeClass('active');
+                $('.display_view').children('div').eq(visible_index).css("visibility", "hidden");
+                $(this).addClass('active');
+                $('.display_view').children('div').eq(click_index).css("visibility", "visible");
+                visible_index = click_index;
+            }
+        });
+    }
+
+    function mainViewItemClick() {
+        $('.titleImg').click(function () {
+            var clickIndex = $(this).index();
+            if (clickIndex != mainVisibleIndex) {
+                if (clickIndex == 0) {
+                    $('#earthIcon img').attr('src', 'img/earth_active.png');
+                    $('#graphIcon img').attr('src', 'img/graph.png');
+                    $('#worldmap').css("visibility", "visible");
+                    $('#community_layout').css("visibility", "hidden");
+                    $('.map_title span').text('affiliation distribution');
+                }
+                else {
+                    $('#earthIcon img').attr('src', 'img/earth.png');
+                    $('#graphIcon img').attr('src', 'img/graph_active.png');
+                    $('#worldmap').css("visibility", "hidden");
+                    $('#community_layout').css("visibility", "visible");
+                    $('.map_title span').text('coauthor network');
+                }
+                mainVisibleIndex = clickIndex;
+            }
+        });
+    }
+
+    function sortClick() {
+        $('#affiliationSort ul li').click(function () {
+            var sortIndex = $(this).index();
+            if (sortIndex != paramList.affiliation[1]) {
+                $('#affiliationSort ul').children('li').eq(paramList.affiliation[1]).removeClass('active');
+                $(this).addClass('active');
+                affiliation_list(paramList.affiliation[0][sortIndex]);
+                paramList.affiliation[1] = sortIndex;
+            }
+        });
+
+        $('#authorSort ul li').click(function () {
+            var sortIndex = $(this).index();
+            if (sortIndex != paramList.author[3]) {
+                $('#authorSort ul').children('li').eq(paramList.author[3]).removeClass('active');
+                $(this).addClass('active');
+                author_list(paramList.author[0], paramList.author[1], paramList.author[2][sortIndex]);
+                paramList.author[3] = sortIndex;
+            }
+        });
+    }
+
+</script>
+
+</html>
